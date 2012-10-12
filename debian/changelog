@@ -1,12 +1,13 @@
-openmediavault-ldap (0.4-0aurex1) precise; urgency=low
+openmediavault-ldap (0.4+svn339-0aurex1) precise; urgency=low
 
+  * Upstream snapshot based on 'trunk' revision 339 (2012-10-12)
   * Rebuild for aurex 12.04
   * rules fixed
   * Remove depends in libnss-ldap
   * Added patch 10_remove_libnss_ldap.patch to configure
     libpam-ldap instead of libpam-ldapd/libnss-ldap
 
- -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Tue, 09 Oct 2012 20:17:50 +0200
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Fri, 12 Oct 2012 11:29:14 +0200
 
 openmediavault-ldap (0.4) stable; urgency=low
 
