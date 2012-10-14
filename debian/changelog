@@ -1,3 +1,10 @@
+openmediavault-ldap (0.4+svn339-0aurex2) precise; urgency=low
+
+  * Updated 10_remove_libnss_ldap.patch to include binddn,
+    bindpw and nss_base directives and extra_options parameter
+
+ -- Luis Antonio Garcia Gisbert <luisgg@gmail.com>  Sun, 14 Oct 2012 21:08:25 +0200
+
 openmediavault-ldap (0.4+svn339-0aurex1) precise; urgency=low
 
   * Upstream snapshot based on 'trunk' revision 339 (2012-10-12)

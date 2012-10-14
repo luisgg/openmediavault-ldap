@@ -37,21 +37,21 @@ set -e
 
 OMV_LDAP_CONFIG=${OMV_LDAP_CONFIG:-"/etc/ldap/ldap.conf"}
 OMV_LDAP_LDAPVERSION=${OMV_LDAP_LDAPVERSION:-"3"}
-OMV_LDAP_LIBNSS_CONFIG=${OMV_LDAP_LIBNSS_CONFIG:-"/etc/libnss-ldap.conf"}
-OMV_LDAP_LIBNSS_SECRET=${OMV_LDAP_LIBNSS_SECRET:-"/etc/libnss-ldap.secret"}
+OMV_LDAP_LIBNSS_CONFIG=${OMV_LDAP_LIBNSS_CONFIG:-"/etc/ldap.conf"}
+OMV_LDAP_LIBNSS_SECRET=${OMV_LDAP_LIBNSS_SECRET:-"/etc/ldap.secret"}
 OMV_LDAP_LIBNSS_BINDPOLICY=${OMV_LDAP_LIBNSS_BINDPOLICY:-"soft"}
 OMV_LDAP_PAM_CONFIG=${OMV_LDAP_PAM_CONFIG:-"/etc/pam_ldap.conf"}
 
-xmlstarlet sel -t \
-  -m "//services/ldap" \
-	-v "concat('base ',base)" -n \
-	-v "concat('uri ldap://',host)" -n \
-	-o "ldap_version ${OMV_LDAP_LDAPVERSION}" -n \
-	-v "concat('binddn ',rootbinddn)" -n \
-	-v "concat('bindpw ',rootbindpw)" -n \
-	-o "pam_password crypt" -n \
-  -b \
-  ${OMV_CONFIG_FILE} | xmlstarlet unesc > ${OMV_LDAP_PAM_CONFIG}
+#xmlstarlet sel -t \
+#  -m "//services/ldap" \
+#	-v "concat('base ',base)" -n \
+#	-v "concat('uri ldap://',host)" -n \
+#	-o "ldap_version ${OMV_LDAP_LDAPVERSION}" -n \
+#	-v "concat('binddn ',rootbinddn)" -n \
+#	-v "concat('bindpw ',rootbindpw)" -n \
+#	-o "pam_password crypt" -n \
+#  -b \
+#  ${OMV_CONFIG_FILE} | xmlstarlet unesc > ${OMV_LDAP_PAM_CONFIG}
 
 
 xmlstarlet sel -t \
@@ -67,7 +67,9 @@ xmlstarlet sel -t \
 	-v "concat('uri ldap://',host)" -n \
 	-o "ldap_version ${OMV_LDAP_LDAPVERSION}" -n \
 	-v "concat('rootbinddn ',rootbinddn)" -n \
-	-o "bind_policy ${OMV_LDAP_LIBNSS_BINDPOLICY}" -n \
+	-v "concat('binddn ',rootbinddn)" -n \
+	-v "concat('bindpw ',rootbindpw)" -n \
+	-o "pam_password md5" -n \
 	-v "concat('nss_base_passwd ',usersuffix,',',base)" -n \
 	-v "concat('nss_base_shadow ',usersuffix,',',base)" -n \
 	-v "concat('nss_base_group ',groupsuffix,',',base)" -n \
